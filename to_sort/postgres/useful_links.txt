@@ -1,0 +1,68 @@
+
+http://www.postgresql.org/docs/9.4/static/catalog-pg-class.html
+http://www.postgresql.org/docs/9.4/static/catalog-pg-tablespace.html
+http://www.postgresql.org/docs/9.4/static/sql-cluster.html
+http://www.postgresql.org/docs/9.4/static/pgstattuple.html
+
+# Postgres Statistics
+http://www.postgresql.org/docs/9.4/static/monitoring-stats.html
+
+# Locks
+https://wiki.postgresql.org/wiki/Lock_Monitoring
+
+# pg_buffercache
+http://www.postgresql.org/docs/9.4/static/pgbuffercache.html
+http://michael.otacoo.com/postgresql-2/postgres-feature-highlight-pg_buffercache/
+
+
+Determining Disk Usage
+http://www.postgresql.org/docs/current/static/disk-usage.html
+
+Database File Layout
+http://www.postgresql.org/docs/current/static/storage-file-layout.html
+
+System catalogs
+http://www.postgresql.org/docs/current/static/catalogs.html
+
+Admin functions
+http://www.postgresql.org/docs/9.4/static/functions-admin.html
+
+Filename to table
+http://blog.2ndquadrant.com/postgresql-filename-to-table/
+    Viewing the path of a relation
+    SELECT pg_relation_filepath('tablename');
+
+    Reverse mapping relfilenodes on 9.4
+    SELECT pg_filenode_relation(0, 3720450);
+
+# pgpool
+http://www.pgpool.net/mediawiki/index.php/Main_Page
+
+# autovacuum
+http://www.postgresql.org/docs/9.1/static/routine-vacuuming.html
+
+# vacuumdb
+http://www.postgresql.org/docs/9.4/static/app-vacuumdb.html
+
+# Postgres Replication
+https://wiki.postgresql.org/wiki/Replication,_Clustering,_and_Connection_Pooling
+
+# Postgres Tuning
+https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server
+
+# Poostgres Source code
+http://doxygen.postgresql.org/
+
+# Postgres extensions
+# dblink
+http://www.postgresql.org/docs/current/static/dblink.html
+http://www.postgresql.org/docs/9.4/static/contrib-dblink-function.html
+
+# Efficient Use of PostgreSQL Indexes
+https://devcenter.heroku.com/articles/postgresql-indexes
+
+# Query postgres indexes
+http://robert-reiz.com/2012/01/17/showing-indexes-in-postgresql/
+
+# Resource Consumption
+http://www.postgresql.org/docs/9.4/static/runtime-config-resource.html

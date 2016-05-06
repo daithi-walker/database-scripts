@@ -1,0 +1,6 @@
+declare
+    tx_id varchar2(1000);
+begin
+    tx_id := dbms_transaction.local_transaction_id (create_transaction => true);
+    dbms_output.put_line(tx_id);
+end;

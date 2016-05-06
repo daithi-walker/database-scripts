@@ -1,0 +1,6 @@
+WITH RECURSIVE t(n) AS (
+    VALUES (1)
+  UNION ALL
+    SELECT n+1 FROM t WHERE n < 1000
+)
+SELECT n FROM t;

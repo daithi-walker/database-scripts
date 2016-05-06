@@ -1,0 +1,5 @@
+BEGIN
+  DBMS_STATS.FLUSH_DATABASE_MONITORING_INFO;
+END;
+
+SELECT * FROM sys.dba_tab_modifications WHERE table_owner IN ('OLIVE','SANFRAN');

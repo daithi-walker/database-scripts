@@ -1,0 +1,1 @@
+select 'alter system kill session '''||sid||','||serial#||''';' vsql from gv$session where osuser like '%david%';
