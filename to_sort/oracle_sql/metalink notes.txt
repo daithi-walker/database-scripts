@@ -1,0 +1,27 @@
+References:
+Concurrent Processing – ANALYZEREQ.SQL Detailed Analysis of One Concurrent Request (Release 11 and up) [ID 134035.1]
+How to Determine Which Manager Ran a Specific Concurrent Request? [ID 343575.1]
+How Do I Find Out Which Concurrent Manager Processed A Concurrent Request/Program [ID 344011.1]
+
+http://www.pythian.com/blog/the-internal-workflow-of-e-business-suite-concurrent-manager-process/
+http://www.pythian.com/blog/performance-settings-of-concurrent-managers/
+
+
+R12 org access
+How to set the Organization Context in R12? (Doc ID 437119.1)
+Note: 420787.1 - Oracle Applications Multiple Organizations Access Control for Custom Code
+
+How To Setup Bank Account Maintenance Security and Account Access Security In Release 12 (Doc ID 403975.1)
+
+Note: 187504.1 - bde_request.sql - Process and Session info for one Concurrent Request (11.5)
+Note: 735119.1 - How to Find Database Session & Process Associated with a Concurrent Program Which is Currently Running.
+
+How to view org-specific data in a MOAC environment [ID 415860.1]
+Oracle Applications Multiple Organizations Access Control for Custom Code [ID 420787.1]
+How to set the Organization Context in R12? [ID 437119.1]
+SQL Queries and Multi-Org Architecture in Release 12 [ID 462383.1]
+How To Retrieve Rows From Table Or Synonym For An ORG_ID In E-Business Suite 12 [ID 787677.1]
+
+How to Add a New Legal Entity, Ledger and Operating Unit for a New Country [ID 1064366.1]
+
+SQLT Diagnostic Tool (Doc ID 215187.1)	To BottomTo Bottom	
