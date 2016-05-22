@@ -1,0 +1,29 @@
+find ./ -iname '*.txt' -delete
+find ./ -iname '*.doc' -delete
+find ./ -iname '*.smi' -delete
+find ./ -iname '*.jpg' -delete
+find ./ -iname '*.jpeg' -delete
+find ./ -iname '*.gif' -delete
+find ./ -iname '*.sfv' -delete
+find ./ -iname '*.png' -delete
+find ./ -iname '*.nfo' -delete
+find ./ -iname '*.exe' -delete
+find ./ -iname '*.xpi' -delete
+find ./ -iname '*.url' -delete
+find ./ -iname '*.db' -delete
+find ./ -type f ! -iname '*.avi' ! -iname '*.mp4' ! -iname '*.mkv' ! -iname '*.mpg' ! -iname '*.m4v' ! -iname '*.srt'  ! -iname '*.idx'  ! -iname '*.sub' 
+
+
+
+# find, unrar and delete rar files.
+for i in `find . -type f -iname "*.rar" `; do unrar e -r -o- $i; rm $i; done
+# remvoe the partial rar files once we are sure all files have been unpacked.
+find ./ -iname '*.r??' -delete
+
+find ./ -depth -type d -iname '*.720p*' -execdir rename -v 's/.720p//g' {} +
+find ./ -depth -type d -iname '*.hdtv*' -execdir rename -v 's/\.hdtv//g' {} +
+find ./ -depth -type d -iname '*.x264-evolve*' -execdir rename -v 's/\.x264-evolve//g' {} +
+
+find ./ -type d ! -iname '*.avi' ! -iname '*.mp4' ! -iname '*.mkv' ! -iname '*.mpg' ! -iname '*.m4v' ! -iname '*.srt'  ! -iname '*.idx'  ! -iname '*.sub'
+
+find ./ -type f -name '*.-.*' -exec rename 's/\.-\.//g' {} +

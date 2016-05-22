@@ -1,0 +1,29 @@
+sudo rm /var/lib/dpkg/lock
+sudo dpkg --configure -a
+sudo apt-get purge bluez
+sudo apt-get remove bluez
+sudo mv /var/cache/apt/archives/lock /var/cache/apt/archives/lock_bak
+
+cd /var/lib/dpkg/info
+sudo rm *bluez*
+
+mkdir ~/bk
+sudo mv /var/lib/dpkg/updates/* ~/bk
+sudo apt-get clean
+sudo apt-get update
+
+
+Trying times bluez completely removed:
+sudo dpkg --remove --force-remove-reinstreq bluez
+sudo dpkg --purge --force-remove-reinstreq bluez 
+
+Removing the PPAs:
+sudo apt-add-repository --remove ppa:vidplace7/bluez5
+
+Package source empty cache:
+sudo apt-get clean
+
+sudo apt-get install --reinstall ubuntu-desktop
+
+grep ^ /etc/apt/sources.list /etc/apt/sources.list.d/*
+

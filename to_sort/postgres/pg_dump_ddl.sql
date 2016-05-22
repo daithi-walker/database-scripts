@@ -1,6 +1,6 @@
-export PGPASSWORD="pgadild0"
+--export PGPASSWORD="******"
 
-SELECT   'pg_dump -U data -h ess-lon-mis-db-001 mis -s -t '||table_schema||'.'||table_name||' -f '||table_schema||'.'||table_name||'.sql' vsql
+SELECT   'pg_dump -U data -h <host> mis -s -t '||table_schema||'.'||table_name||' -f '||table_schema||'.'||table_name||'.sql' vsql
 FROM     information_schema.tables
 WHERE    1=1
 AND      table_type = 'VIEW'
