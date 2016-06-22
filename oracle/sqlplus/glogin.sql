@@ -19,5 +19,5 @@ define_editor=vi
 --set termout on
 --set sqlprompt '&gname> '
 
-set sqlprompt "_user'@'_connect_identifier>"
+set sqlprompt "_user'@'_connect_identifier> "
 

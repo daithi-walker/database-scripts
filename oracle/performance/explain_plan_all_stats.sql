@@ -1,0 +1,22 @@
+SET PAGESIZE 1000;
+SET LINESIZE 160;
+
+SET AUTOTRACE OFF;
+
+COL METHOD      FORMAT A10;
+COL RETURN_VAL  FORMAT A100;
+
+WITH ds AS 
+(
+SELECT  LEVEL rel_id
+FROM    dual CONNECT BY LEVEL <= 20
+)        
+SELECT  /*+ GATHER_PLAN_STATISTICS */
+        'correct' as "METHOD"
+,       listagg(rel_id,' ') WITHIN GROUP (ORDER BY rel_id) as "RETURN_VAL"
+FROM    ds;
+
+SELECT  *
+FROM    TABLE(dbms_xplan.display_cursor(NULL,NULL,'ALLSTATS LAST'));
+
+EXIT;
