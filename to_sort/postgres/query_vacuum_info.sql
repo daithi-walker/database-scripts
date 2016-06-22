@@ -29,9 +29,9 @@ and     case
             then 'Y'
             else 'N'
         end = 'Y'
---and     psut.schemaname = 'ds3'
+--and     psut.schemaname = 'dcm'
+--and     psut.relname = 'import_conversions'
 --and     psut.autovacuum_count > 0
---and     psut.relname = 'archive_keyword_delivery_goo'
 order by psut.n_dead_tup desc
 --case when pc.reltuples > 0 then psut.n_dead_tup/pc.reltuples else 0 end desc
 --greatest(psut.last_autovacuum,psut.last_vacuum) desc nulls first
