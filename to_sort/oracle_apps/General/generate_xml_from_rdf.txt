@@ -1,0 +1,7 @@
+cd $XXCUS_TOP/reports/US
+# extract rdf data
+rwconverter batch=yes source=./PEPSBACS.rdf dest=PEPSBACS.xml dtype=xmlfile
+# create data template from data source
+java oracle.apps.xdo.rdfparser.DataTemplateGenerator ./PEPSBACS.xml
+# create rtf template from layout
+java oracle.apps.xdo.rdfparser.RTFTemplateGenerator ./PEPSBACS.xml

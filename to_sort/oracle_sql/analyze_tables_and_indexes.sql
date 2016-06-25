@@ -6,7 +6,7 @@ declare
   ,         table_name
   from      all_tables
   where     1=1
-  and       table_name like 'XXCRH%'
+  and       table_name like 'xxx%'
   ;
   
   cursor c_indexes
@@ -15,7 +15,7 @@ declare
   ,         index_name
   from      all_indexes
   where     1=1
-  and       table_name like 'XXCRH%'
+  and       table_name like 'xxx%'
   ;
 
 begin

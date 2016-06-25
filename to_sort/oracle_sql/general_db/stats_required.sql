@@ -1,4 +1,4 @@
---select * from table(stats_required('list stale','XXCRH'));
+--select * from table(stats_required('list stale','XXAPPS'));
 
 create or replace function stats_required(
     i_status    in  varchar2    default 'LIST AUTO',

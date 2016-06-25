@@ -9,8 +9,8 @@ DECLARE
    l_check               VARCHAR2 (2);
 BEGIN
    --
-   l_program_short_name  := 'XXDOE_INVPRINT_LL';
-   l_program_application := 'XXDOE';   -- application short name
+   l_program_short_name  := 'XX';
+   l_program_application := 'XXXXXX';   -- application short name
    l_request_group       := 'Receivables All';
    l_group_application   := 'Receivables';  -- application long name
    --

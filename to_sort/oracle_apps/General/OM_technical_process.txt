@@ -1,0 +1,95 @@
+When you create an Order with "Entered" status.
+
+oe_order_headers_all 1 record created in header table
+oe_order_lines_all Lines for particular records lines details is there
+oe_price_adjustments When discount gets applied
+oe_order_price_attribs If line has price attributes then populated
+oe_order_holds_all If any hold applied for order like credit check etc.
+Order Booking: This is next stage, when Order is booked then the Flow status changed from Entered to Booked.
+
+oe_order_headers_all Booked_flag=Y Order booked.
+wsh_delivery_details Released_status Ready to release
+here is few things you will notice for this stage:
+
+The FLOW_STATUS_CODE in the table OE_ORDER_HEADERS_ALL would be ‘BOOKED’
+The FLOW_STATUS_CODE in OE_ORDER_LINES_ALL will be ‘AWAITING_SHIPPING’.
+Record(s) will be created in the table WSH_DELIVERY_DETAILS with RELEASED_STATUS=’R’ (Ready to Release)
+Also Record(s) will be inserted into WSH_DELIVERY_ASSIGNMENTS.
+Pick Released :Pick Release is the process of putting reservation on on-hand quantity available in the inventory and pick them for particular sales order
+
+wsh_delivery_details Released_status=Y Released to Warehouse (Line has been released to Inventory for processing)
+wsh_picking_batches After batch is created for pick release.
+mtl_reservations This is only soft reservations. No physical movement of stock
+Full Transaction
+
+mtl_material_transactions No records in mtl_material_transactions
+mtl_txn_request_headers
+mtl_txn_request_lines
+wsh_delivery_details Released to warehouse.
+wsh_new_deliveries if Auto-Create is Yes then data populated.
+wsh_delivery_assignments deliveries get assigned
+Credit Chk Details
+
+oe_credit_check_rules To get the Credit Check Againt Customer.
+Cancel Orders details
+
+oe_order_lines_all
+Hold Relaese
+
+oe_hold_releases_all Hold released Sales Order.
+Pick Confirm/ Move Order Transaction: Here items are transferred from source sub-inventory to staging Sub-inventory.
+
+wsh_delivery_details Released_status=Y Hard Reservations. Picked the stock. Physical movement of stock
+Ship Confirm: Items are loaded in Truck/ Transportations Mode for the delivery to Customers
+
+wsh_delivery_details Released_status=C Y To C:Shipped ;Delivery Note get printed Delivery assigned to trip stopquantity will be decreased from staged
+mtl_material_transactions On the ship confirm form, check Ship all box
+wsh_new_deliveries If Defer Interface is checked I.e its deferred then OM & inventory not updated. If Defer Interface is not checked.: Shipped
+oe_order_lines_all Shipped_quantity get populated.
+wsh_delivery_legs 1 leg is called as 1 trip.1 Pickup & drop up stop for each trip.
+oe_order_headers_all If all the lines get shipped then only flag N
+Price Details
+
+
+ 
+qp_list_headers_b To Get Item Price Details.
+qp_list_lines
+Items On Hand Qty
+
+mtl_onhand_quantities TO check On Hand Qty Items.
+Sales Credit Sales -Credit Information(How much credit can get)
+
+oe_sales_credits
+If you have any attachment , then these tables are used
+
+fnd_attached_documents Attched Documents and Text information
+fnd_documents_tl
+fnd_documents_short_text
+Blanket Sales Order
+
+oe_blanket_headers_all Blanket Sales Order Information.
+oe_blanket_lines_all
+Autoinvoice
+
+Invoice is generated in ERP once Autoinvoice has been run
+
+wsh_delivery_details Released_status=I Need to run workflow background process.
+ra_interface_lines_all Data will be populated after wkfw process.
+ra_customer_trx_all After running Autoinvoice Master Program for
+ra_customer_trx_lines_all specific batch transaction tables get populated
+Payment Terms
+
+ra_terms Payment terms
+dgreybarrow Let took the flow part for O2C.
+
+Here are assocaited tables and underline details. for more insight on O2C, refer to this post.
+
+The Order To Cash cycle of any industry includes following steps:
+
+Order Entry: This is first stage, When the order is entered in the system
+Order Booking: This is next stage, when Order is booked then the Flow status changed from Entered to Booked.
+Pick Release: Pick Release is the process of putting reservation on on-hand quantity available in the inventory and pick them for particular sales order
+Pick Confirm/ Move Order Transaction: Items are transferred from source sub-inventory to staging Sub-inventory.
+Ship Confirm: Items are loaded in Truck/ Transportations Mode for the delivery to Customers
+Invoice Generation: Invoice is generated
+Close Order

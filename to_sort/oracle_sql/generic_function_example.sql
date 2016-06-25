@@ -10,11 +10,10 @@ DECLARE
       FROM     all_directories
       WHERE    1=1
       AND      directory_name = iv_directory_name;
-      --v_retval := XXCRH_SYSTEM_PKG.GET_XXCRH_VALUE('XXCRH','XXCRH_SEPADANSKE_DIR');
       RETURN v_retval;
    EXCEPTION
       WHEN NO_DATA_FOUND THEN
-         RAISE; -- e_sepa_dir_not_found;
+         RAISE;
    END FN_GET_DIRECTORY;
 BEGIN
   v_ret := FN_GET_DIRECTORY('SEPA_OUT_DIR');

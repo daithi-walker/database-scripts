@@ -1,0 +1,4 @@
+ln -s $FND_TOP/bin/fndcpesr MU_AP_BAR_EFT_FILE_TRANSFER
+
+# overwrite existing softlink
+ln -sfn $XXCUS_TOP/bin/XXCPUBLCC.ctl $CE_TOP/bin/XXCPUBLCC.ctl

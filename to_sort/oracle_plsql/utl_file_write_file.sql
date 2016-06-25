@@ -11,7 +11,7 @@ declare
   v_str  varchar2(100);
 begin
   dbms_output.enable(10000);
-  l_out_dir := XXCRH_SYSTEM_PKG.GET_XXCRH_VALUE('XXCRH', 'XXCRH_COMMAND_DIR');
+  l_out_dir := 'OUTPUT_DIR';
   l_output_file := UTL_FILE.FOPEN(l_out_dir, l_file_name,'W',32767);
   for i in 1..5
   loop

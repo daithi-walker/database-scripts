@@ -1,0 +1,61 @@
+Key Tables in Oracle Inventory
+
+Here is a brief description of the key tables in Oracle Inventory.
+
+Table	Description
+MTL_PARAMETERS	It maintains a set of default options like general ledger accounts; locator, lot, and serial controls, inter-organization options, costing method, etc. for each organization defined in Oracle Inventory. Each organization’s item master organization (MASTER_ORGANIZATION_ID) and costing organization (COST_ORGANIZATION_ID) are maintained here.
+
+MTL_SYSTEM_ITEMS_B	This is the definition table for items. This table holds the definitions for inventory items, engineering items, and purchasing items. The primary key for an item is the INVENTORY_ITEM_ID and ORGANIZATION_ID. Therefore, the same item can be defined in more than one organization. Items now support multilingual description. MLS is implemented with a pair of tables: MTL_SYSTEM_ITEMS_B and MTL_SYSTEM_ITEMS_TL. Translations table (MTL_SYSTEM_ITEMS_TL) holds item Description and Long Description in multiple languages.
+
+MTL_ITEM_STATUS	This is the definition table for material status codes. Status code is a required item attribute. It indicates the status of an item, i.e., Active, Pending, Obsolete.
+
+MTL_UNITS_OF_MEASURE_TL	This is the definition table for both the 25-character and the 3-character units of measure. The base_uom_flag indicates if the unit of measure is the primary unit of measure for the uom_class. Oracle Inventory uses this table to keep track of the units of measure used to transact an item.
+
+MTL_ITEM_LOCATIONS	This is the definition table for stock locators. The associated attributes describe which subinventory this locator belongs to, what the locator physical capacity is, etc.
+
+MTL_ITEM_CATEGORIES	This table stores inventory item assignments to categories within a category set. For each category assignment, this table stores the item, the category set, and the category. Items always may be assigned to multiple category sets. However, depending on the Multiple Assignments Allowed attribute value in a given category set definition, an item can be assigned to either many or only one category in that category set.
+
+MTL_CATEGORIES_B	This is the code combinations table for item categories. Items are grouped into categories within the context of a category set to provide flexible grouping schemes. Item categories now support multilingual category description. MLS is implemented with a pair of tables: MTL_CATEGORIES_B and MTL_CATEGORIES_TL. MTL_CATEGORIES_TL table holds translated Description for Categories.
+
+MTL_CATEGORY_SETS_B	It contains the entity definition for category sets. A category set is a categorization scheme for a group of items. Items may be assigned to different categories in different category sets to represent the different groupings of items used for different purposes. An item may be assigned to only one category within a category set, however. STRUCTURE_ID identifies the flexfield structure associated with the category set. Category Sets now support multilingual category set name and description. MLS is implemented with a pair of tables: MTL_CATEGORY_SETS_B and MTL_CATEGORY_SETS_TL. MTL_CATEGORY_SETS_TL table holds translated Name and Description for Category Sets.
+
+MTL_DEMAND	This table stores demand and reservation information used in Available To Promise, Planning and other Manufacturing functions. There are three major row types stored in the table: Summary Demand rows, Open Demand Rows, and Reservation Rows.
+
+MTL_SECONDARY_INVENTORIES	This is the definition table for the subinventory. A subinventory is a section of inventory, i.e., raw material, finished goods, etc. Subinventories are assigned to items (in a many to one relationship), indicating a list of valid places where this item will physically exist in inventory.
+
+MTL_ONHAND_QUANTITIES 	It stores quantity on hand information by control level and location. It is maintained as a stack of receipt records, which are consumed by issue transactions in FIFO order. The quantity on hand of an item at any particular control level and location can be found by summing TRANSACTION_QUANTITY for all records that match the criteria.
+
+MTL_TRANSACTION_TYPES	It contains seeded transaction types and the user defined ones. USER_DEFINED_FLAG will distinguish the two. The table also stores the TRANSACTION_ACTION_ID and TRANSACTION_SOURCE_TYPE_ID that is associated with each transaction type.
+
+MTL_MATERIAL_TRANSACTIONS	This table stores a record of every material transaction or cost update performed in Inventory. Records are inserted into this table either through the transaction processor or by the standard cost update program. The columns TRANSACTION_TYPE_ID, TRANSACTION_ACTION_ID, TRANSACTION_SOURCE_TYPE_ID, TRANSACTION_SOURCE_ID and TRANSACTION_SOURCE_NAME describe what the transaction is and against what entity it was performed.
+
+MTL_ITEM_ATTRIBUTES	This table stores information on item attributes. Each
+row in the table corresponds to an attribute. The table stores the attribute name, the corresponding user-friendly name seen by the users, and the kind of validation enforced on the attribute.
+
+MTL_ITEM_CATALOG_GROUPS_B	This is the code combinations table for item catalog groups. An item catalog group consists of items that can be described by the same set of descriptive elements or item properties. When an item is associated with an item catalog group, the item inherits the descriptive elements for that group which then behave like additional item attributes.
+
+MTL_ITEM_REVISIONS_B	It stores revision levels for an inventory item. When an item is defined a starting revision record is written out to this table, so every item will at least have one starting revision.
+
+MTL_ITEM_TEMPLATES_B	This is the definition table for item templates. It
+contains the user-defined name (TEMPLATE_NAME) and description (DESCRIPTION) ONLY for backward compatibility. You can use a template to set certain item attributes.
+
+MTL_DESCRIPTIVE_ELEMENTS	It stores the descriptive element definitions for an item catalog group. Descriptive elements are defining properties used to describe in the catalog group.
+
+MTL_DESCR_ELEMENT_VALUES	It stores the descriptive element values for a specific item. When an item is associated with a particular item catalog group, one row per descriptive element (for that catalog group) is inserted into this table.
+ORG_ACCT_PERIODS	It holds the open and closed financial periods for organizations.
+
+MTL_CUSTOMER_ITEMS	It stores customer item information for a specific customer. Each record can be defined at one of the following levels: Customer, Address Category, and Address. The customer item definition is organization independent.
+
+MTL_SYSTEM_ITEMS_INTERFACE	It temporarily stores the definitions for inventory items, engineering items and purchasing items before loading this information into Oracle Inventory.
+
+MTL_TRANSACTIONS_INTERFACE	It allows calling applications to post material transactions (movements, issues, receipts etc. to Oracle Inventory  transaction module.
+
+MTL_ITEM_REVISIONS_INTERFACE	It temporarily stores revision levels for an inventory item before loading this information into Oracle Inventory.
+
+MTL_ITEM_CATEGORIES_INTERFACE	This table temporarily stores data about inventory item assignments to category sets and categories before loading this information into Oracle Inventory.
+
+MTL_DESC_ELEM_VAL_INTERFACE	This table temporarily stores descriptive element values for an item that is associated with an item catalog group before loading this information into Oracle Inventory.
+
+MTL_DEMAND_INTERFACE	It is the interface point between non-Inventory applications and the Inventory demand module. Records inserted into this table are processed by the Demand Manager concurrent program.
+
+MTL_INTERFACE_ERRORS	It stores errors that occur during the item interface process reporting where the errors occurred along with the error messages.
