@@ -1,0 +1,67 @@
+select osuser, 'ALTER SYSTEM KILL SESSION '''||sid||','||serial#||''';' from v$session
+--where osuser = 'DWALKER'
+;
+
+select * from v$session where sid = 458;
+
+
+ALTER SYSTEM KILL SESSION '449,786' IMMEDIATE;
+ALTER SYSTEM KILL SESSION '452,1030' immediate;
+ALTER SYSTEM KILL SESSION '458,45109' immediate;
+
+COMMIT;
+
+CREATE OR REPLACE PACKAGE xxcrh_ap_ros_pay_process
+AS
+  null;
+END xxcrh_ap_ros_pay_process;
+
+SELECT * FROM  V$LOCK;
+
+SELECT * FROM  V$DB_OBJECT_CACHE WHERE NAME LIKE '%ROS%PROCESS%' and locks > 0;
+
+select * from all_objects where object_name like '%$%LOCK%'
+
+select * from sys.GV_$LOCKED_OBJECT;
+
+select * from sys.V_$LOCKED_OBJECT;
+
+select * from V$CACHE_LOCK;
+
+SELECT s.sid,
+s.serial#,
+s.osuser,
+s.status,
+s.program,
+s.blocking_instance,
+s.blocking_session 
+FROM v$session s
+where osuser = 'DWALKER'
+order by 4
+;
+
+SELECT   session_id sid
+,        owner||'.'||name object_name
+,        type
+,        mode_held held
+,        mode_requested request
+FROM     dba_ddl_locks
+WHERE    name LIKE UPPER('%ROS%PROCESS%');
+
+SELECT   'ALTER SYSTEM KILL SESSION '''||a.sid||','||c.serial#||''' IMMEDIATE;' sql
+,        a.sid
+,        c.serial#
+,        a.job
+,        a.failures
+,        to_char(a.this_date, 'mm/dd/yyyy hh:mi pm') startdatetime
+,        b.what
+FROM     dba_jobs_running a
+,        dba_jobs b
+,        v$session c
+WHERE    1=1
+AND      a.job = b.job
+AND      a.sid = c.sid
+ORDER BY a.this_date;
+
+ALTER SYSTEM KILL SESSION '166,389' IMMEDIATE;
+ALTER SYSTEM KILL SESSION '8,171' IMMEDIATE;

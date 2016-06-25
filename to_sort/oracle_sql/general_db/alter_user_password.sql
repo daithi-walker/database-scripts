@@ -1,0 +1,1 @@
+ALTER USER pmuser IDENTIFIED BY pmuser;

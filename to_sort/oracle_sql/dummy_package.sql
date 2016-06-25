@@ -28,9 +28,9 @@ as
    begin
       for cnt in 1..4000
       loop
-         v_request_id := fnd_request.submit_request(application   => 'PEPSI'
-                                                   ,program       => 'XXDWTEST'
-                                                   ,description   => 'XXDWTEST-'||cnt
+         v_request_id := fnd_request.submit_request(application   => ''
+                                                   ,program       => ''
+                                                   ,description   => 'TEST-'||cnt
                                                    ,start_time    => sysdate
                                                    ,sub_request   => null
                                                    );

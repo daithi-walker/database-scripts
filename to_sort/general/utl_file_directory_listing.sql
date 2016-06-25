@@ -1,0 +1,1 @@
+select * from v$parameter where name = 'utl_file_dir';

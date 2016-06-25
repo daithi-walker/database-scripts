@@ -1,0 +1,11 @@
+- Stop all application services (keep the database and the database listener up and running)
+- Download the patch from Metalink
+- Copy the patch file to any directory (i.e. /u04/patches)
+- As 'applmgr' do the following:
+- Source the environment file
+- $ cd /u04/patches 
+- Type 'unzip <patch_number>.zip'
+- cd <patch_number>
+- Type 'adpatch'
+- When it prompts you to enter the patch driver, type 'u<patch_number>.drv'
+

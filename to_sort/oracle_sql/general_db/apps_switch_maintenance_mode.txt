@@ -1,0 +1,14 @@
+We can enable or disable maintenance mode without using adutility (adadmin), Perform the same from SQLPLUS session.
+
+Check the current status of Maintenance Mode:
+
+select fnd_profile.value('APPS_MAINTENANCE_MODE') from dual;
+
+MAINT     =  MAINTENANCE MODE is ENABLED
+NORMAL =  MAINTENANCE MODE is DISABLED
+
+ENABLE maintenance mode:
+sqlplus -s apps/apps @$AD_TOP/patch/115/sql/adsetmmd.sql ENABLE
+
+DISABLE maintenance mode:
+sqlplus -s apps/apps @$AD_TOP/patch/115/sql/adsetmmd.sql DISABLE

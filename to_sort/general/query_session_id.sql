@@ -1,0 +1,1 @@
+select sys_context('userenv','sessionid') Session_ID from dual;
