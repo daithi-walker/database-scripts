@@ -1,7 +1,7 @@
 --This file should be symlinked to the main glogin.sql file or just overwrite it.
 --sudo ln -s ~/git/database-scripts/oracle/sqlplus/glogin.sql $ORACLE_HOME/sqlplus/admin/glogin.sql
 
-set pagesize 0
+set pagesize 9999
 set linesize 160
 
 define_editor=vi
