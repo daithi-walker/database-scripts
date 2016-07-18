@@ -4,14 +4,14 @@
 find ${MIS_BASE} \
 	-type f \
 	-mtime +30 \
-	\( \( \( -path '*\/cron_logs\/*' -o -path '*\/cronlogs\/*' -o -path '*\/logs\/*' -o -path '*\/IMAP\/*' -o -path '*\/sqlldr_log\/*' \) -name '*.log' \) -o \( -path '*sqlldr_bad*' -a -name '*.bad' \) \) \
+	\( \( \( -path '*\/cron_logs\/*' -o -path '*\/cronlogs\/*' -o -path '*\/logs\/*' -o -path '*\/IMAP\/*' -o -path '*\/sqlldr_log\/*' -o -path '*\/sqlldr_logs\/*' \) -name '*.log' \) -o \( -path '*sqlldr_bad*' -a -name '*.bad' \) \) \
 	-exec gzip -f {} \;
 
 # Remove compressed log and bad files older than a year.
 find ${MIS_BASE} \
 	-type f \
 	-mtime +365  \
-	\( \( \( -path '*\/cron_logs\/*' -o -path '*\/cronlogs\/*' -o -path '*\/logs\/*' -o -path '*\/IMAP\/*' -o -path '*\/sqlldr_log\/*' \) -a -name '*.log.gz' \) -o \( -path '*sqlldr_bad*' -a -name '*.bad.gz' \) \) \
+	\( \( \( -path '*\/cron_logs\/*' -o -path '*\/cronlogs\/*' -o -path '*\/logs\/*' -o -path '*\/IMAP\/*' -o -path '*\/sqlldr_log\/*' -o -path '*\/sqlldr_logs\/*' \) -a -name '*.log.gz' \) -o \( -path '*sqlldr_bad*' -a -name '*.bad.gz' \) \) \
 	-delete
 
 # Data files
@@ -25,14 +25,14 @@ find ${MIS_BASE} \
 	-exec gzip -f {} \;
 
 # Following folder does not have archive directory in path giving it a separate find
-find ${MIS_BASE}admin/bin/pyutils/alerts/data/ \
+find ${MIS_BASE}/admin/bin/pyutils/alerts/data/ \
 	-type f \
 	-mtime +30 \
 	-name '*.csv' \
 	-exec gzip -f {} \;
 
 # Had data and archive in the name but file name is wildcard. putting here to stop confusion above.
-find ${MIS_BASE}partners/google/data/pcampaignid_passback/archive/ \
+find ${MIS_BASE}/partners/google/data/pcampaignid_passback/archive/ \
 	-type f \
 	-mtime +30 \
 	-name '*.csv-*' \
