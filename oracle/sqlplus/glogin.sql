@@ -7,17 +7,17 @@ set linesize 160
 define_editor=vi
 
 --using a sqlquery to customise the prompt.
---column global_name new_value gname
---set termout off
---SELECT  LOWER(SYS_CONTEXT('USERENV','CURRENT_USER'))
---        ||'@'
---        ||SYS_CONTEXT('USERENV','SERVER_HOST')
---        ||':'
---        || SYS_CONTEXT('USERENV','DB_NAME')
---        AS global_name
---FROM DUAL;
---set termout on
---set sqlprompt '&gname> '
+column global_name new_value gname
+set termout off
+SELECT  LOWER(SYS_CONTEXT('USERENV','CURRENT_USER'))
+        ||'@'
+        ||SYS_CONTEXT('USERENV','SERVER_HOST')
+        ||':'
+        || SYS_CONTEXT('USERENV','DB_NAME')
+        AS global_name
+FROM DUAL;
+set termout on
+set sqlprompt '&gname> '
 
-set sqlprompt "_user'@'_connect_identifier> "
+--set sqlprompt "_user'@'_connect_identifier> "
 
