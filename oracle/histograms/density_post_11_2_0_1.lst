@@ -1,54 +1,45 @@
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> -- the test table with an exponential value distribution
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> create table t (value int);
-ERROR:
-ORA-03114: not connected to ORACLE
 
+Table created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> insert into t(value) select 1	from dual connect by level <= 1;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+1 row created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> insert into t(value) select 2	from dual connect by level <= 2;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+2 rows created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> insert into t(value) select 4	from dual connect by level <= 4;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+4 rows created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> insert into t(value) select 8	from dual connect by level <= 8;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+8 rows created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> insert into t(value) select 16	from dual connect by level <= 16;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+16 rows created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> insert into t(value) select 64	from dual connect by level <= 64;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+64 rows created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> commit;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+Commit complete.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> --alter session set "_optimizer_enable_density_improvements"=false;
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> -- gather stats and histogram
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> exec dbms_stats.gather_table_stats (user, 'T', method_opt=>'for all columns size 5', estimate_percent=>null);
-ERROR:
-ORA-03114: not connected to ORACLE
 
+PL/SQL procedure successfully completed.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> -- a view to format dba_histograms for our example table
@@ -68,9 +59,8 @@ SYS@dave-HP-EliteBook-840-G1:1523/orcl> create or replace view formatted_hist as
  14  	    decode (ep - nvl (prev_ep, 0), 0, 0, 1, 0, 1) as popularity
  15   from hist2
  16  order by ep;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+View created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> -- views to automatically compute the NewDensity formula for HBs
@@ -81,9 +71,8 @@ SYS@dave-HP-EliteBook-840-G1:1523/orcl> create or replace view newdensity_factor
   5  	    max ((select num_distinct as NDV from user_tab_cols where table_name = 'T' and column_name = 'VALUE')) as NDV,
   6  	    max ((select density      from user_tab_cols where table_name = 'T' and column_name = 'VALUE')) as density
   7    from formatted_hist;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+View created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> create or replace view newdensity as
@@ -91,23 +80,26 @@ SYS@dave-HP-EliteBook-840-G1:1523/orcl> create or replace view newdensity as
   3  	    density as OldDensity,
   4  	    BktCnt, PopBktCnt, PopValCnt, NDV
   5    from newdensity_factors;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+View created.
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> -- calculate NewDensity
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> select * from newdensity;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+NEWDENSITY OLDDENSITY     BKTCNT  POPBKTCNT  POPVALCNT        NDV
+---------- ---------- ---------- ---------- ---------- ----------
+       .04 .115789474          5          4          1          6
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> -- print (formatted) histograms
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> select * from formatted_hist;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+     VALUE         EP        BKT POPULARITY
+---------- ---------- ---------- ----------
+         1          0          0          0
+        16          1          1          0
+        64          5          4          1
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> -- print density and related figures
@@ -115,9 +107,10 @@ SYS@dave-HP-EliteBook-840-G1:1523/orcl> select c.density * t.num_rows, c.density
   2    from user_tab_columns c, user_tables t
   3   where c.table_name = 'T' and c.column_name = 'VALUE'
   4  	and c.table_name = t.table_name;
-ERROR:
-ORA-03114: not connected to ORACLE
 
+C.DENSITY*T.NUM_ROWS    DENSITY
+-------------------- ----------
+                  11 .115789474
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> -- 1) calculate density (aka OldDensity) on the NPS (Not Popular Subtable)
@@ -141,6 +134,14 @@ SYS@dave-HP-EliteBook-840-G1:1523/orcl> with nps as (
  16  	    new_density_precise_times_nr,
  17  	    new_density_precise_times_nr / (select num_rows from user_tables where table_name = 'T') as new_density_precise
  18    from results;
+with nps as (
+*
+ERROR at line 1:
+ORA-03113: end-of-file on communication channel
+Process ID: 711
+Session ID: 5 Serial number: 153
+
+
 ERROR:
 ORA-03114: not connected to ORACLE
 
@@ -168,6 +169,10 @@ ORA-03114: not connected to ORACLE
 
 
 SYS@dave-HP-EliteBook-840-G1:1523/orcl> select * from t where value = 2.4;
+ERROR:
+ORA-03114: not connected to ORACLE
+
+
 ERROR:
 ORA-03114: not connected to ORACLE
 

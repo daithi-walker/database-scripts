@@ -141,3 +141,11 @@ begin
    use_last_arch_timestamp     => true );
 end;
 /
+
+-- change the tablespace that the audit tables belong to.
+begin
+  dbms_audit_mgmt.set_audit_trail_location(
+    audit_trail_type           => dbms_audit_mgmt.audit_trail_aud_std,
+    audit_trail_location_value => 'audit_aux');
+end;
+/

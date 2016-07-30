@@ -1,0 +1,1 @@
+create user "<username>" with password '<password>' in role <role>;

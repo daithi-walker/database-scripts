@@ -2,12 +2,13 @@
 --
 -- (c) Alberto Dell'Era, October 2009
 -- Tested in 9.2.0.8, 11.1.0.7.
+WHENEVER SQLERROR THEN EXIT ROLLBACK;
 
-set echo on
-set lines 150
-set pages 9999
-set serveroutput on size 1000000
-set trimspool on 
+set echo on;
+set lines 150;
+set pages 9999;
+set serveroutput on size 1000000;
+set trimspool on;
 
 drop table t;
 
