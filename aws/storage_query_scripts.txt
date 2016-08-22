@@ -1,0 +1,45 @@
+# list buckets json format)
+aws s3api list-buckets --query 'Buckets[].Name'
+
+#  
+aws s3api list-objects --bucket BUCKETNAME --output json --query "[sum(Contents[].Size), length(Contents[])]"
+
+# list objects in a bucket and summarize at the end
+aws s3 ls --summarize --human-readable --recursive s3://bucket-name/
+
+# disk usage 
+s3cmd du -H s3://bucket-name/
+
+# size of a bucket hacked
+aws s3 ls s3://bucket-name/ --recursive | awk 'BEGIN {total=0}{total+=$3}END{print total/1024/1024" MB"}'
+
+# loop through buckets and summarize size of bucket.
+s3list=`aws s3 ls | awk  '{print $3}'`
+for s3dir in $s3list
+do
+    echo $s3dir
+    aws s3 ls "s3://$s3dir" --recursive --human-readable --summarize | grep "Total Size"
+done
+
+s3dir=interactive-logging
+aws s3 ls "s3://$s3dir"  --recursive --human-readable --summarize | grep "Total Size"
+s3dir=intuit-dt-logs
+aws s3 ls "s3://$s3dir"  --recursive --human-readable --summarize | grep "Total Size"
+s3dir=mapping-permanent
+aws s3 ls "s3://$s3dir"  --recursive --human-readable --summarize | grep "Total Size"
+s3dir=script-holding
+aws s3 ls "s3://$s3dir"  --recursive --human-readable --summarize | grep "Total Size"
+
+s3list=`aws s3 ls "s3://interactive-logging/i/" | head | awk '{print $2}'`
+for s3dir in $s3list
+do
+    echo $s3dir
+    aws s3 ls "s3://interactive-logging/i/$s3dir" --recursive --human-readable --summarize | grep "Total Size"
+done
+
+s3list=`aws s3 ls "s3://interactive-logging/i/" | awk '{print $2}'`
+for s3dir in $s3list
+do
+    echo $s3dir
+    aws s3 ls "s3://interactive-logging/i/$s3dir" --recursive --summarize | grep "Total Size"
+done
