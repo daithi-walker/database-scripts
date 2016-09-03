@@ -11,7 +11,8 @@ and     job_id in
         select  job_id
         from    utils.job_monitor
         where   1=1
-        and     job_name = 'ds3.update_search_agg_from_olive'
+        --and     job_name = 'ds3.update_search_agg_from_olive'
+        and     job_name = 'dcm.update_lineitem_ratios'
         and     start_time > current_date-1
         --and     start_time > '01-JUN-2016'::date
         )

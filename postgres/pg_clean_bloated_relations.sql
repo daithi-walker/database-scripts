@@ -123,6 +123,7 @@ SELECT  x.relation
 ,       'psql -d mis -c ''vacuum full analyze verbose '||x.relation||''';' psql
 FROM    x
 WHERE   1=1
+-- exclude items which are currently locked.
 AND     NOT EXISTS
         (
         SELECT  NULL
@@ -133,8 +134,8 @@ AND     NOT EXISTS
         )
 --AND     x.relation like '%imp%'
 GROUP BY x.relation
---HAVING   SUM(x.disksize) < 10000000000
+HAVING   SUM(x.disksize) < 10000000000  -- display relation that has a disk usage under 10gb
 --HAVING   SUM(x.wastedbytes) >= 100000000
 ORDER BY SUM(x.wastedbytes)
-LIMIT 1
+--LIMIT 1
 ;
