@@ -113,14 +113,14 @@ WHERE   (sml.relpages - sml.otta > 128 OR sml.ipages - sml.iotta > 128)
 AND     ROUND(CASE WHEN sml.iotta=0 OR sml.ipages=0 THEN 0.0 ELSE sml.ipages/sml.iotta::NUMERIC END,1) > 1.2 
 AND     CASE WHEN sml.ipages < sml.iotta THEN 0 ELSE sml.bs*(sml.ipages-sml.iotta) END > 1024 * 100
 )
-SELECT  x.relation
-,       pg_size_pretty(SUM(x.disksize)) disk
-,       pg_size_pretty(SUM(x.wastedbytes)::BIGINT) wasted
-,       pg_size_pretty(SUM(CASE WHEN x.relkind = 't' then x.disksize else 0 end)) AS tdisk
-,       pg_size_pretty(SUM(CASE WHEN x.relkind = 't' then x.wastedbytes else 0 end)::BIGINT) AS twaste
-,       pg_size_pretty(SUM(CASE WHEN x.relkind = 'i' then x.disksize else 0 end)) AS idisk
-,       pg_size_pretty(SUM(CASE WHEN x.relkind = 'i' then x.wastedbytes else 0 end)::BIGINT) AS iwaste
-,       'psql -d mis -c ''vacuum full analyze verbose '||x.relation||''';' psql
+SELECT  'psql -h ess-lon-mis-db-001 -d mis -U "david.walker" -c ''vacuum full analyze verbose '||x.relation||''';' psql
+--,       x.relation
+--,       pg_size_pretty(SUM(x.disksize)) disk
+--,       pg_size_pretty(SUM(x.wastedbytes)::BIGINT) wasted
+--,       pg_size_pretty(SUM(CASE WHEN x.relkind = 't' then x.disksize else 0 end)) AS tdisk
+--,       pg_size_pretty(SUM(CASE WHEN x.relkind = 't' then x.wastedbytes else 0 end)::BIGINT) AS twaste
+--,       pg_size_pretty(SUM(CASE WHEN x.relkind = 'i' then x.disksize else 0 end)) AS idisk
+--,       pg_size_pretty(SUM(CASE WHEN x.relkind = 'i' then x.wastedbytes else 0 end)::BIGINT) AS iwaste
 FROM    x
 WHERE   1=1
 -- exclude items which are currently locked.

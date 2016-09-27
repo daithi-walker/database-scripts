@@ -1,0 +1,1 @@
+createuser -h <host> -U "<my_username>" -P -s "<new_user>"

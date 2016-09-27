@@ -1,0 +1,31 @@
+===================
+Freelist management
+===================
+Segment not freelist managed
+
+
+PL/SQL procedure successfully completed.
+
+====
+ASSM
+====
+
+Unformatted                   :        0 /            0
+Freespace 1 (  0 -  25% free) :        0 /            0
+Freespace 2 ( 25 -  50% free) :        0 /            0
+Freespace 3 ( 50 -  75% free) :        0 /            0
+Freespace 4 ( 75 - 100% free) :        5 /       40,960
+Full                          :        0 /            0
+
+
+PL/SQL procedure successfully completed.
+
+=======
+Generic
+=======
+Segment Total blocks: 8
+Object Unused blocks: 0
+
+
+PL/SQL procedure successfully completed.
+
