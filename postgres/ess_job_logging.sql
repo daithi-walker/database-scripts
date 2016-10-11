@@ -13,13 +13,16 @@ and     job_id in
         select  job_id
         from    utils.job_monitor
         where   1=1
-        --and     job_name = 'performance.upload_lineitem_activity:performance.dcm_activity:source_id-1'
-        and     job_name = 'performance.upload_lineitem_delivery:performance.dbm_delivery:source_id-8'
+        and     job_name = 'performance.upload_lineitem_activity:performance.dcm_activity:source_id-1'
+        --and     job_name = 'performance.upload_lineitem_delivery:performance.dcm_delivery:source_id-1'
+        --and     job_name = 'performance.upload_lineitem_activity:performance.ds3_activity:source_id-3'
+        --and     job_name = 'performance.upload_lineitem_delivery:performance.ds3_delivery:source_id-3'
         and     start_time  > current_date-1
         )
 order by
         job_id desc
-,       step_id desc;
+,      step_id desc
+limit 10;
 
 
 

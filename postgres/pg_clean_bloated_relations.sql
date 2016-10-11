@@ -50,6 +50,7 @@ FROM    (
                              AND nn.nspname <> 'information_schema'
         ) AS sml
 WHERE   sml.relpages - sml.otta > 128 
+AND     sml.schemaname NOT IN ('pg_catalog')
 AND     ROUND(CASE WHEN sml.otta=0 THEN 0.0 ELSE sml.relpages/sml.otta::NUMERIC END,1) > 1.2 
 AND     CASE WHEN sml.relpages < otta THEN 0 ELSE sml.bs*(sml.relpages-sml.otta)::BIGINT END > 1024 * 100
 UNION ALL
@@ -110,10 +111,12 @@ FROM    (
         LEFT JOIN pg_class c2 ON c2.oid = i.indexrelid
         ) AS sml
 WHERE   (sml.relpages - sml.otta > 128 OR sml.ipages - sml.iotta > 128) 
+AND     sml.schemaname NOT IN ('pg_catalog')
 AND     ROUND(CASE WHEN sml.iotta=0 OR sml.ipages=0 THEN 0.0 ELSE sml.ipages/sml.iotta::NUMERIC END,1) > 1.2 
 AND     CASE WHEN sml.ipages < sml.iotta THEN 0 ELSE sml.bs*(sml.ipages-sml.iotta) END > 1024 * 100
 )
-SELECT  'psql -h ess-lon-mis-db-001 -d mis -U "david.walker" -c ''vacuum full analyze verbose '||x.relation||''';' psql
+SELECT    'ppm -c ''vacuum full analyze verbose '||x.relation||''';' psql
+--        'psql -h ess-lon-mis-db-001 -d mis -U "david.walker" -c ''vacuum full analyze verbose '||x.relation||''';' psql
 --,       x.relation
 --,       pg_size_pretty(SUM(x.disksize)) disk
 --,       pg_size_pretty(SUM(x.wastedbytes)::BIGINT) wasted

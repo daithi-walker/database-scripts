@@ -1,0 +1,1 @@
+15 4 * * * psql -c "select pg_xlog_replay_pause();" && /usr/local/bin/pg_rolldump --dir /var/backups/database/ess-lon-mis-db-002/ --keep-days 7 --keep-weeks 2 --keep-months 1 --prefix mis -- -U postgres -Fc -d mis && psql -c "select pg_xlog_replay_resume();" && echo "Backup successful at: `date`" > /var/backups/database/ess-lon-mis-db-002/backup_timestamp
