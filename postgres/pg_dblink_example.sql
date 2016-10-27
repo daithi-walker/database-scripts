@@ -1,5 +1,5 @@
 SELECT  *
-FROM    dblink('host=ess-lon-mis-db-001 port=5432 dbname=mis user=david.walker password=<password>'
+FROM    dblink('host=<host> port=<port> dbname=<dbname> user=<user> password=<password>'
               ,'select  procedure_name
                 ,       waiting_jobs
                 ,       running_jobs

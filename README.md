@@ -4,7 +4,7 @@ Mainly database related but some other randon crap in there too.
 
 ## Oracle
 * DBA
-* Performane
+* Performance
 * ASM
 * Metadata
 
